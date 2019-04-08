@@ -126,4 +126,4 @@
 > devDependencies和dependencies的区别是什么？
 
 > NPM使用过程中可能会遇到哪些坑？
-* 如果文件夹名需要安装的包名相同，通过npm install packageName的方式安装会提示错误信息，手动在package.json里面加上依赖并npm i的方式则可以正常安装。
+* 如果文件夹名需要安装的包名相同，通过npm install packageName的方式安装会提示错误信息，手动在package.json里面加上依赖并npm i的方式则可以正常安装。（[参考链接](https://docs.npmjs.com/cli/install#limitations-of-npms-install-algorithm)）
