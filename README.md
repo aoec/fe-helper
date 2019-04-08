@@ -70,7 +70,7 @@
 
 #### Vue的运行过程是怎样的？
 
-#### 如果用最简单的方式实现一个双向绑定库？
+#### 如果用最简单的方式实现双向绑定？
 
 #### 前端路由的运行过程是怎样的？
 
@@ -98,7 +98,6 @@
 ## JSON
 
 #### JSON的规范有哪些？
-* 
 
 #### JSON在使用过程中可能会遇到的问题有哪些？
 * JSON不支持Function
@@ -121,14 +120,14 @@
 
 #### NPM是什么？
 
-#### NPM按照包的时候，速度慢怎么办？
+#### NPM安装包的时候，速度慢怎么办？
 
-#### 如果更方便的切换安装源？
+#### 如何更方便的切换安装源？
 
 #### devDependencies和dependencies的区别是什么？
 
 #### NPM使用过程中可能会遇到哪些坑？
-* 如果文件夹名需要安装的包名相同，通过npm install packageName的方式安装会提示错误信息，手动在package.json里面加上依赖并npm i的方式则可以正常安装。（[参考链接](https://docs.npmjs.com/cli/install#limitations-of-npms-install-algorithm)）
+* 如果文件夹名与需要安装的包名相同，通过npm install packageName的方式安装会报错，手动在package.json里面加上依赖并使用npm i的方式安装则是正常的。（[参考链接](https://docs.npmjs.com/cli/install#limitations-of-npms-install-algorithm)）
 
 ## HTTP
 
