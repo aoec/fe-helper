@@ -131,7 +131,7 @@
     * 问题原因
         * npm的包安装算法使用的是递归安装，为避免出现死循环，默认不安装和当前文件夹名称一致的包。
     * 解决方案
-        * 方案一：文件夹改名（推荐）
+        * 方案1：文件夹改名（推荐）
         * 方案2：手动在package.json里面加上依赖并使用npm i的方式安装
     * [参考链接](https://docs.npmjs.com/cli/install#limitations-of-npms-install-algorithm)
 
