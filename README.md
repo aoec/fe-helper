@@ -15,6 +15,21 @@
 
 #### 如何修改this的指向？
 
+## Layout
+
+#### 浏览器是如何渲染DOM的？
+
+#### 渲染过程中存在着哪些问题？
+
+#### 如何优化渲染过程？
+
+* 长列表优化
+* DOM节点操作优化
+
+#### 浏览器支持哪些布局方式？
+
+#### 不同地方声明的同名样式，浏览器如何选择？
+
 # ES6
 
 ## Promise
@@ -74,6 +89,8 @@
 
 #### 前端路由的运行过程是怎样的？
 
+#### Vue使用过程中可能会遇到的坑有哪些？
+
 # 设计模式
 
 # 数据结构
@@ -119,21 +136,58 @@
 ## NPM
 
 #### NPM是什么？
+* 意义
+  * NPM是NodeJS的包管理工具，可以为开发者提供方便的发布和下载Node包的服务。
+* 创始
+  * 创始于2009年。
+* 参考链接
+  * [npm About](https://www.npmjs.com/about)
 
 #### NPM安装包的时候，速度慢怎么办？
+* 切换为淘宝的安装源
+  * 安装cnpm
+    * npm install -g cnpm --registry=https://registry.npm.taobao.org
+  * 使用源
+    * cnpm install
+  * 参考链接
+    * [淘宝 NPM 镜像](https://npm.taobao.org/)
+
 
 #### 如何更方便的切换安装源？
+* 使用安装源切换工具（nrm）
+  * 安装
+    * npm install -g nrm
+  * 查看源列表
+    * nrm ls
+  * 切换源
+    * nrm use cnpm
+  * 使用源
+    * npm install
+  * 参考链接
+    * [Pana/nrm: NPM registry manager, fast switch between different registries: npm, cnpm, nj, taobao](https://github.com/Pana/nrm)
+
 
 #### devDependencies和dependencies的区别是什么？
+* 使用npm install --production安装的时候，devDependencies中的依赖不会被安装，dependencies中的依赖会被安装。不加入--production安装则行为一致。
+* 参考链接
+    * [What's the difference between dependencies, devDependencies and peerDependencies in npm package.json file?
+](https://stackoverflow.com/questions/18875674/whats-the-difference-between-dependencies-devdependencies-and-peerdependencies)
 
 #### NPM使用过程中可能会遇到哪些坑？
 * 如果文件夹名与需要安装的包名相同，通过npm install packageName的方式安装会报错
-    * 问题原因
-        * npm的包安装算法使用的是递归安装，为避免出现死循环，默认不安装和当前文件夹名称一致的包。
-    * 解决方案
-        * 方案1：文件夹改名（推荐）
-        * 方案2：手动在package.json里面加上依赖并使用npm i的方式安装
-    * [参考链接](https://docs.npmjs.com/cli/install#limitations-of-npms-install-algorithm)
+  * 问题原因
+    * npm的包安装算法使用的是递归安装，为避免出现死循环，默认不安装和当前文件夹名称一致的包。
+  * 解决方案
+    * 方案1：文件夹改名（推荐）
+    * 方案2：手动在package.json里面加上依赖并使用npm i的方式安装
+  * 参考链接
+    * [Limitations of npm’s Install Algorithm](https://docs.npmjs.com/cli/install#limitations-of-npms-install-algorithm)
+* 未锁定版本情况下，依赖的包新版本出现问题，导致当前应用出现问题
+  * 问题原因
+    * 依赖的包新版本出现问题
+  * 解决方案
+    * 方案1：对于出现问题的依赖包进行锁版本（推荐）
+    * 方案2：对所有依赖包进行锁版本
 
 ## HTTP
 
