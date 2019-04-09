@@ -122,16 +122,54 @@
 ## Git
 
 #### Git是什么？
+* 意义
+  * 分布式版本管理系统。
+* 创始
+  * 创始于2005年。
+* 参考链接
+  * [1.2 起步 - Git 简史](https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-Git-%E7%AE%80%E5%8F%B2)
+  * [1.2 Getting Started - A Short History of Git](https://git-scm.com/book/en/v2/Getting-Started-A-Short-History-of-Git)
 
 #### 什么情况下我需要使用Git？
 
 #### 如何配置Git环境？
+* 安装
+  * [1.5 起步 - 安装 Git](https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)
+* 配置用户名和邮箱
+  * git config --global user.name "John Doe"
+  * git config --global user.email johndoe@example.com
+* 生成ssh通讯公钥
+  * ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+* 查看公钥
+  * cat ~/.ssh/id_rsa.pub
+* 添加ssh key
+  * github
+    * 头像 -> settings -> SSH and GPG keys > New SSH key
+      * title 选填
+      * key 把查看的公钥粘贴到这里
+* 初始化git项目
+  * 本地
+    * git init
+  * github
+    * git clone https://github.com/aoec/fe-helper.git
+
 
 #### fetch和pull有什么不同？
+* 相关信息
+  * pull等同于fetch+merge
+* 参考链接
+  * [What is the difference between 'git pull' and 'git fetch'?
+](https://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch)
 
 #### 如何通过git进行团队合作和需求上线？
+* 开发准备
+  * 基于master分支checkout出一个开发分支A
+* 上线阶段
+  * 基于master分支checkout一个预上线分支B
+  * 开发分支A对预上线分支B发pr
 
 #### Git使用过程中可能会遇到哪些坑？
+* 错误的把代码A合到了预上线分支B，并且在你之后继续有代码合并到此分支，如何把分支A合并到分支B的部分提交记录从分支B中删除？
 
 ## NPM
 
