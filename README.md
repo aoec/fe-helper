@@ -7,6 +7,12 @@
 
 #### 什么是原型链？
 
+## 闭包
+
+#### 什么是闭包？
+
+#### 闭包的应用
+
 ## this
 
 #### this是什么？
@@ -14,6 +20,8 @@
 #### this指向谁？
 
 #### 如何修改this的指向？
+
+## GC
 
 ## Layout
 
@@ -131,6 +139,8 @@
     * 非数字 `/\D/`
     * 数字大小写字母下划线 `/\w/`
     * 非数字大小写字母下划线 `/\w/`
+    * 空白符号 `/\s/`
+    * 非空白字符 `/\S/`
     * 非换行符的任意字符 `/./`
 * 匹配边界
   * 语法
@@ -143,20 +153,29 @@
     * `/()/`
   * 用例
     * `'hello world'.match(/hello (world)!/)`
+* 选择匹配
+  * 语法
+    * `/|/`
+  * 用例
+    * `'hello world'.match(/h|w/)`
 * 零宽断言
   * 语法
     * 正向肯定断言 `/?=/`
     * 正向否定断言 `/?!/`
+    * 反向肯定断言 `/?<=/`
+    * 反向否定断言 `/?<!/`
   * 用例
     * 正向肯定断言 `'hello world'.match(/hello (?=world)/)`
     * 正向否定断言 `'hello world'.match(/hello (?!world)/)`
+    * 反向肯定断言 `'hello world'.match(/(?<=hello )world/)`
+    * 反向否定断言 `'hello world'.match(/(?<!hello )world/)`
 * 重复匹配
   * 语法
     * 匹配零次或一次 `/hel?o/`
     * 匹配一次或以上 `/hel+o/`
     * 匹配零次或以上 `/hel*o/`
     * 固定数量 `/{2}/`
-    * 范围内数量 `${2,4}`
+    * 范围内数量 `/{2,4}/`
   * 应用
     * `'hello world'.match(/ ?hel+o */)`
 * 动态创建正则
@@ -324,5 +343,57 @@
 ## HTTP
 
 #### HTTP缓存的方式有哪些？
+* Cache-Control
+  * 示例
+    * `Cache-Control: no-store`
+      * 不缓存
+    * `Cache-Control: no-cache`
+      * 每次向服务器验证缓存是否过期
+    * `Cache-Control: private`
+      * 默认值
+      * 中间人（中间代理、CDN等）不能缓存
+    * `Cache-Control: public`
+      * 中间人可缓存
+    * `Cache-Control: max-age=31536000`（强缓存）
+      * 可以被缓存的时长（秒）
+    * 参考链接
+      * [Cache-Control - HTTP | MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control)
+* Pragma（强缓存）
+  * `Pragma: no-cache`
+    * 用来向后兼容只支持 HTTP/1.0 协议的缓存服务器
+    * 等效于`Cache-Control: no-cache`
+  * 参考链接
+    * [Pragma - HTTP | MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Pragma)
+* Etag（强缓存）
+  * 缓存的条件
+    * ETag和If-None-Match一致
+  * 示例
+    * `ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4`
+    * `If-None-Match: "33a64df551425fcc55e4d42a148795d9f25f89d4"`
+  * 参考链接
+    * [ETag - HTTP | MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/ETag)
+* Expires（强缓存）
+  * 缓存的条件
+    * 到达或超过过期时间
+  * 示例
+    * `Expires: Wed, 21 Oct 2015 07:28:00 GMT`
+  * 参考链接
+    * [Expires - HTTP | MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Expires)
+* 参考链接
+  * [HTTP 缓存 - HTTP | MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching_FAQ)
 
 #### HTTP的重定向方式有哪些？
+* 场景
+* 示例
+* 状态码
+  * 301 Moved Permanently 永久重定向
+  * 302 Found 临时重定向
+  * 304 Not Modified 缓存有效
+* 参考链接
+  * [HTTP 的重定向 - HTTP | MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Redirections)
+
+## WebSocket
+
+## PWA
+
+## Service Worker
