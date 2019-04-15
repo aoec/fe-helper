@@ -11,6 +11,70 @@
 
 #### 什么是闭包？
 
+* 一个函数内返回另一个函数，则会形成闭包
+
+```js
+const fun = () => {
+  const variable = 'closure sample'
+  return closureFun = () => {
+    return variable
+  }
+}
+```
+* 函数内声明的变量外部无法访问，通过闭包可以访问
+
+```js
+const closureFun = fun()
+closureFun()  // "closure sample"
+```
+
+* 一般来说，函数执行完后，内部的变量会被清除
+* 通过在闭包内访问变量的方式，可以使变量的值一直存在
+
+#### 闭包的应用
+
+* 链式调用
+
+```js
+const setColor = function(color) {
+  this.color = color;
+  return this
+}
+const setVisible = function(visible) {
+  this.visible = visible
+  return this
+}
+const Utils = {
+  color: '',
+  visible: false,
+  setColor,
+  setVisible
+}
+Utils.setColor('blue').setVisible(true)  // {color: "blue", visible: false, setColor: ƒ, setVisible: ƒ, visivle: true}
+```
+
+* 工具封装
+  * 闭包内的变量外部无法访问，可以避免闭包内变量污染全局作用域
+
+```js
+((instance) => {
+  const setColor = function(color) {
+    this.color = color;
+    return this
+  }
+  const setVisible = function(visible) {
+    this.visible = visible
+    return this
+  }
+  instance.Util = {
+    color: '',
+    visible: false,
+    setColor: ,
+    setVisible
+  }
+})(window)
+```
+
 #### 闭包的应用
 
 ## this
@@ -19,7 +83,47 @@
 
 #### this指向谁？
 
+* this指向调用者
+
+```js
+var variable = 'sample variable in window'
+var obj = {
+  variable: 'sample variable in fun',
+  fun: function (paramOne, paramTwo) {
+    console.log(this.variable, paramOne, paramTwo)
+  }
+}
+obj.fun('one', 'two')  // sample variable in fun one two，调用者为obj，this指向obj
+const fun = obj.fun
+fun('one', 'two')  // sample variable in fun one two，调用者为window，this指向window
+```
+
 #### 如何修改this的指向？
+
+* call
+  * 第一个参数为所需指向的位置
+  * 第二个参数为数组，里面是函数入参
+
+```js
+fun.call(obj, 'one', 'two')  // sample variable in fun one two
+```
+
+* apply
+  * 第一个参数为所需指向的位置
+  * 第二个及以后的参数为函数入参
+
+```js
+fun.apply(obj, ['one', 'two'])  // sample variable in fun one two
+```
+
+* bind
+  * 第一个参数为所需指向的位置
+  * 指向过后返回绑定了this的新函数
+    * 新函数的第一个及以后的参数为函数入参
+
+```js
+fun.bind(obj)('one', 'two')  // sample variable in fun one two
+```
 
 ## GC
 
