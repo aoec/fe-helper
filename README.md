@@ -75,6 +75,8 @@ Utils.setColor('blue').setVisible(true)  // {color: "blue", visible: false, setC
 })(window)
 ```
 
+#### 闭包的应用
+
 ## this
 
 #### this是什么？
