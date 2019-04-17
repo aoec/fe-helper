@@ -69,7 +69,7 @@ Utils.setColor('blue').setVisible(true)  // {color: "blue", visible: false, setC
   instance.Util = {
     color: '',
     visible: false,
-    setColor: ,
+    setColor,
     setVisible
   }
 })(window)
@@ -208,6 +208,69 @@ fun.bind(obj)('one', 'two')  // sample variable in fun one two
 # 数据结构
 
 # 算法
+
+## 排序
+
+```js
+const sampleArr = [4,2,1,5,3];
+```
+
+#### 冒泡排序
+* 简介
+  * 从左至右依次对比当前值和下一个值的大小，如果当前值大于下一个值，则交换，每轮产生一个排好序的值。
+* 步骤
+  * 第一轮
+    * 4 和 2 比较，4 > 2，交换，新值为 `[2,4,1,5,3]`
+    * 4 和 1 比较，4 > 1，交换，新值为 `[2,1,4,5,3]`
+    * 4 和 5 比较，4 < 5，交换，不变
+    * 5 和 3 比较，5 > 3，交换，新值为 `[2,1,4,3,5]`
+    * 当前产生一个最大数，5
+  * 第二轮
+    * ...
+* 关键点
+  * 第一层循环需要走几次？
+    * 假设待排序的数长度是2个，第一轮冒泡产生一个排好序的值，剩下的一个值无需排序，所以走1次；
+    * 假设待排序的数长度是3个，第一轮冒泡产生一个排好序的值，第二轮也产生一个，剩下的一个值无需排序，所以走2次；
+    * ...
+    * 以此类推，第一轮需要走 `n-1` 次。
+  * 第二层循环需要走几次？
+    * 假设待排序的数长度是2个
+      * 第一轮，需要比较1次；
+    * 假设待排序的数长度是3个
+      * 第一轮，需要比较2次；
+      * 第二轮，待排序的数长度变成了2，因此需要比较1次；
+    * 假设待排序的数长度是4个
+      * 第一轮，需要比较3次；
+      * 第二轮，待排序的数长度变成了3，因此需要比较2次；
+      * 第三轮，待排序的数长度变成了2，因此需要比较1次；
+    * 以此类推，第二层需要走 `n-1-已排好序数量`
+
+* 示例
+```js
+const bubbleSort = (arr) => {
+  for (var loop1Index = 0; loop1Index < arr.length - 1; loop1Index++) {
+    for (var loop2Index = 0; loop2Index < arr.length - 1 - loop1Index; loop2Index++) {
+      const left = arr[loop2Index];
+      const right = arr[loop2Index + 1];
+      if (left > right) {
+        const temp = left;
+        arr[loop2Index] = right;
+        arr[loop2Index + 1] = temp;
+      }
+    }
+  }
+  return arr;
+}
+bubbleSort(sampleArr)  // [1, 2, 3, 4, 5]
+```
+
+#### 快速排序
+
+#### 选择排序
+
+#### 归并排序
+
+#### 插入排序
 
 # 数据
 
