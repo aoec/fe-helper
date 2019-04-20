@@ -215,6 +215,7 @@ fun.bind(obj)('one', 'two')  // sample variable in fun one two
 * 简介
   * 从左至右依次对比当前值和下一个值的大小，如果当前值大于下一个值，则交换，每轮产生一个排好序的值。
   * [可视化动画](https://visualgo.net/zh/sorting)
+
 * 步骤
   * 第一轮
     * 4 和 2 比较，4 > 2，交换，新值为 `[2,4,1,5,3]`
