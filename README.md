@@ -211,13 +211,11 @@ fun.bind(obj)('one', 'two')  // sample variable in fun one two
 
 ## 排序
 
-```js
-const sampleArr = [4,2,1,5,3];
-```
-
 #### 冒泡排序
 * 简介
   * 从左至右依次对比当前值和下一个值的大小，如果当前值大于下一个值，则交换，每轮产生一个排好序的值。
+  * [可视化动画](https://visualgo.net/zh/sorting)
+
 * 步骤
   * 第一轮
     * 4 和 2 比较，4 > 2，交换，新值为 `[2,4,1,5,3]`
@@ -244,16 +242,26 @@ const sampleArr = [4,2,1,5,3];
       * 第二轮，待排序的数长度变成了3，因此需要比较2次；
       * 第三轮，待排序的数长度变成了2，因此需要比较1次；
     * 以此类推，第二层需要走 `n-1-已排好序数量`
+  * 如果第二层循环，直到遍历结束也没发现需要交换的值
+    * 则表示已经排序完成
+    * 第一层循环可以直接退出
 
-* 示例
+* 示例（两层for循环）
 ```js
 const bubbleSort = (arr) => {
+  let switched = true;
+  let temp = null;
+  let left = null;
+  let right = null;
   for (var loop1Index = 0; loop1Index < arr.length - 1; loop1Index++) {
+    if (!switched) break;
     for (var loop2Index = 0; loop2Index < arr.length - 1 - loop1Index; loop2Index++) {
-      const left = arr[loop2Index];
-      const right = arr[loop2Index + 1];
+      switched = false;
+      left = arr[loop2Index];
+      right = arr[loop2Index + 1];
       if (left > right) {
-        const temp = left;
+        switched = true;
+        temp = left;
         arr[loop2Index] = right;
         arr[loop2Index + 1] = temp;
       }
@@ -261,10 +269,103 @@ const bubbleSort = (arr) => {
   }
   return arr;
 }
+const sampleArr = [4,2,1,5,3];
+bubbleSort(sampleArr)  // [1, 2, 3, 4, 5]
+```
+
+* 示例（do...while）
+
+```js
+const bubbleSort = (arr) => {
+  let tail = arr.length - 1;
+  let switched = true;
+  let temp = nul;
+  do {
+    switched = false;
+    for (var x = 0; x < tail; x++) {
+      if (arr[x] > arr[x+1]) {
+        switched = true;
+        temp = arr[x];
+        arr[x] = arr[x+1];
+        arr[x+1] = temp;
+      }
+    }
+  }
+  while(switched && tail)
+  return arr;
+}
+const sampleArr = [4,2,1,5,3];
 bubbleSort(sampleArr)  // [1, 2, 3, 4, 5]
 ```
 
 #### 快速排序
+
+* 简介
+  * 采用分治的思想，以基准值为界，基准值左右分别处理成小于和大于基准值的序列。然后分别对左右值按照第一句描述的步骤进行递归，直到左值或有值的大小等于1时退出。
+
+* 步骤
+  * 选出基准点（通常选中间值）
+  * 声明两个变量left,right分别储存数组的首尾下标
+  * left的值小于基准点则继续向右移动
+  * 大于则停止
+    * right的值大于基准点则继续向左移动
+    * 小于则停止
+      * 两者都停止的时候，则交换arr[left]和arr[right]的值
+      * 否则继续移动，直到left>right
+        * 紧接着继续按照left为基准点，从步骤二开始对左右两部分数据分别递归
+* 关键点
+
+* 示例（while）
+
+```js
+const quickSort = (arr, left, right) => {
+  const swap = (swapArr, leftIndex, rightIndex) => {
+    const temp = swapArr[leftIndex];
+    swapArr[leftIndex] = swapArr[rightIndex];
+    swapArr[rightIndex] = temp;
+  }
+  const partition = (partArr, partHead, partTail) => {
+    const pivot = partArr[Math.floor((partHead+partTail)/2)];
+    let left = partHead;
+    let right = partTail;
+    while (left <= right) {
+      while (partArr[left] < pivot) left++;
+      while (partArr[right] > pivot) right--;
+      if (partArr[left] > partArr[right]) {
+        swap(partArr, left, right);
+        left++;
+        right--;
+      }
+    }
+    return left;
+  }
+  if (arr.length > 1) {
+    const index = partition(arr, left, right);
+    if (left < index - 1) quickSort(arr, left, index - 1);
+    if (right > index) quickSort(arr, index, right);
+  }
+  return arr;
+}
+const sampleArr = [4,2,1,5,3];
+quickSort(sampleArr, 0, sampleArr.length - 1)  // [1, 2, 3, 4, 5]
+```
+
+* 示例（concat）
+
+```js
+const quickSort = (arr) => {
+  if (arr.length <= 1) return arr;
+  const [pivot, ...rest] = arr;
+  const left = [];
+  const right = [];
+  rest.forEach((v) => {
+    if (v < pivot) left.push(v);
+    else right.push(v);
+  })
+  return [...quickSort(left), pivot, ...quickSort(right)]
+};
+const sampleArr = [4,2,1,5,3];  // [1, 2, 3, 4, 5]
+```
 
 #### 选择排序
 
@@ -564,3 +665,7 @@ bubbleSort(sampleArr)  // [1, 2, 3, 4, 5]
 ## PWA
 
 ## Service Worker
+
+## chrome插件
+
+#### 如何写插件？
