@@ -364,7 +364,8 @@ const quickSort = (arr) => {
   })
   return [...quickSort(left), pivot, ...quickSort(right)]
 };
-const sampleArr = [4,2,1,5,3];  // [1, 2, 3, 4, 5]
+const sampleArr = [4,2,1,5,3];
+quickSort(sampleArr) // [1, 2, 3, 4, 5]
 ```
 
 #### 选择排序
