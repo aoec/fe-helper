@@ -7,6 +7,91 @@
 
 #### 什么是原型链？
 
+* JS中万物皆对象
+  * 基于对象声明了Function
+  * 基于Function声明了Number，Boolean，String，Function
+* 详解
+  * \_\_proto\_\_ 指向构造函数的原型
+    * null, undefined是特殊的空值，没有__proto__属性
+  * prototype 构造函数的原型
+```js
+// 基本类型实例的__proto__指向构造函数的prototype
+(0).__proto__ === Number.prototype  // true，指向Number
+(false).__proto__ === Boolean.prototype  // true
+('').__proto__ === String.prototype  // true
+// 继续往上走则指向Object的prototype
+(0).__proto__.__proto__ === Object.prototype  // true，指向Number
+(false).__proto__.__proto__ === Object.prototype  // true
+('').__proto__.__proto__ === Object.prototype  // true
+// 再继续走指向null
+(0).__proto__.__proto__.__proto__ === null  // true，指向null
+(false).__proto__.__proto__.__proto__ === null  // true
+('').__proto__.__proto__.__proto__ === null  // true
+// 对象实例的__proto__指向Object的prototype
+({}).__proto__ === Object.prototype  // true
+// 继续往上则指向null
+({}).__proto__.__proto__ === null  // true
+// 函数实例的__proto__指向内部Function
+(function(){}).__proto__ === Function.prototype  // true
+// 继续往上则指向Object的prototype
+(function(){}).__proto__.__proto__ === Object.prototype
+// 再继续走指向null
+(function(){}).__proto__.__proto__.__proto__ === null
+```
+  * constructor 指向构造函数
+```js
+// 实例的constructor指向构造函数
+(0).constructor === Number  // true
+(false).constructor === Boolean  // true
+('').constructor === String  // true
+({}).constructor === Object  // true
+(function(){}).constructor === Function  // true
+// 构造函数的constructor指向构造函数的constructor
+Number.constructor === Function  // true
+Boolean.constructor === Function  // true
+String.constructor === Function  // true
+Object.constructor === Function  // true
+Function.constructor === Function  // true
+```
+  * instanceof 判断一个值是否继承至另一个值
+```js
+new Number(0) instanceof Number  // true
+```
+
+```js
+// 基本类型值的__proto__指向对应类型的prototype
+(1).__proto__ === Number.prototype  // true
+(false).__proto__ === Boolean.prototype  // true
+''.__proto__ === String.prototype  // true
+// 对象值的__proto__指向对象类型的prototype
+({}).__proto__ === Object.prototype  // true
+// 函数值的__proto__指向函数类型的prototype
+(function(){}).__proto__ === Function.prototype
+// 基本类型、对象、函数的类型__proto__指向Function的prototype
+Number.__proto__ === Function.prototype  // true
+Boolean.__proto__ === Function.prototype  // true
+String.__proto__ === Function.prototype  // true
+Function.__proto__ === Function.prototype  // true
+Object.__proto__ === Function.prototype  // true
+// 函数的__proto__指向Object
+Number.__proto__.__proto__
+Boolean.__proto__.__proto__
+String.__proto__.__proto__
+Function.__proto__.__proto__
+Object.__proto__.__proto__
+Function.prototype.__proto__
+// Object的__proto__指向null
+Number.__proto__.__proto__.__proto__
+Boolean.__proto__.__proto__.__proto__
+String.__proto__.__proto__.__proto__
+Function.__proto__.__proto__.__proto__
+Object.__proto__.__proto__.__proto__
+Function.prototype.__proto__.__proto__
+```
+
+* 参考
+  * [深度解析原型中的各个难点](https://github.com/KieSun/Dream/issues/2)
+
 ## 闭包
 
 #### 什么是闭包？
