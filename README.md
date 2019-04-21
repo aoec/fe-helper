@@ -74,19 +74,19 @@ String.__proto__ === Function.prototype  // true
 Function.__proto__ === Function.prototype  // true
 Object.__proto__ === Function.prototype  // true
 // 函数的__proto__指向Object
-Number.__proto__.__proto__
-Boolean.__proto__.__proto__
-String.__proto__.__proto__
-Function.__proto__.__proto__
-Object.__proto__.__proto__
-Function.prototype.__proto__
+Number.__proto__.__proto__ === Object.prototype  // true
+Boolean.__proto__.__proto__ === Object.prototype  // true
+String.__proto__.__proto__ === Object.prototype  // true
+Function.__proto__.__proto__ === Object.prototype  // true
+Object.__proto__.__proto__ === Object.prototype  // true
+Function.prototype.__proto__ === Object.prototype  // true
 // Object的__proto__指向null
-Number.__proto__.__proto__.__proto__
-Boolean.__proto__.__proto__.__proto__
-String.__proto__.__proto__.__proto__
-Function.__proto__.__proto__.__proto__
-Object.__proto__.__proto__.__proto__
-Function.prototype.__proto__.__proto__
+Number.__proto__.__proto__.__proto__ === null  // true
+Boolean.__proto__.__proto__.__proto__ === null  // true
+String.__proto__.__proto__.__proto__ === null  // true
+Function.__proto__.__proto__.__proto__ === null  // true
+Object.__proto__.__proto__.__proto__ === null  // true
+Function.prototype.__proto__.__proto__ === null  // true
 ```
 
 * 参考
